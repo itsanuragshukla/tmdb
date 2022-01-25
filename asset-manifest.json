@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/itsanuragshukla/tmdb/static/css/main.3dda4708.css",
+    "main.js": "/itsanuragshukla/tmdb/static/js/main.d021c832.js",
+    "static/js/787.3e3b700d.chunk.js": "/itsanuragshukla/tmdb/static/js/787.3e3b700d.chunk.js",
+    "index.html": "/itsanuragshukla/tmdb/index.html",
+    "main.3dda4708.css.map": "/itsanuragshukla/tmdb/static/css/main.3dda4708.css.map",
+    "main.d021c832.js.map": "/itsanuragshukla/tmdb/static/js/main.d021c832.js.map",
+    "787.3e3b700d.chunk.js.map": "/itsanuragshukla/tmdb/static/js/787.3e3b700d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3dda4708.css",
+    "static/js/main.d021c832.js"
+  ]
+}
