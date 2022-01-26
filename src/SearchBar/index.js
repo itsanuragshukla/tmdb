@@ -1,4 +1,8 @@
-import React from 'react'
+import React, {
+    useState,
+    useEffect,
+    useRef
+} from 'react'
 import {
     Wrapper,
     Search,
@@ -10,25 +14,37 @@ import {
     SearchIcon
 } from './SearchIcon'
 
-class SearchBar extends React.Component {
+const SearchBar = (props) => {
+    const initial = useRef(true);
+    const [state,
+        setState] = useState("")
+    const [searchTerm,
+        setSearchTerm] = useState("");
 
-    constructor(props) {
-        super()
-    }
+    useEffect(()=> {
+        if (initial.current) {
+            initial.current = false;
+            return;
+        }
 
-
-    render() {
-        return (<Wrapper>
+        const timer = setTimeout(()=> {
+            setSearchTerm(state);
+            props.callback(state);
+        }, 500);
+        return () => clearTimeout(timer);
+    },
+        [setSearchTerm,
+            state])
+    return (<Wrapper>
                 <Search>
                 <Icon>
                     <SearchIcon />
                 </Icon>
                 <Input>
-                    <input type="text" placeholder="Search Movie ..." name="searchTerm" value={this.props.searchTerm} onChange={this.props.callback} />
+                    <input type="text" placeholder="Search Movie ..." name="searchTerm" value={state} onChange={event => setState(event.target.value)} />
                 </Input>
                 </Search>
                 </Wrapper>
-        )
-    }
+    )
 }
 export default SearchBar

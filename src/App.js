@@ -34,12 +34,11 @@ class App extends React.Component {
         this.handleClick = this.handleClick.bind(this)
         this.handleSearchTerm = this.handleSearchTerm.bind(this)
     }
-    loadMore = async () => {
+    loadMore = async (query = "", pageNum = 1) => {
         this.setState(prev => ({
             loading: !prev.loading && !prev.loading,
         }))
-        const data = await Defs.fetchMovies(this.state.searchTerm, this.state.page)
-        // console.log(data)
+        const data = await Defs.fetchMovies(query, pageNum)
         this.setState(prev => ({
             ...data,
             results:
@@ -51,22 +50,19 @@ class App extends React.Component {
         }))
     };
 
-    handleSearchTerm = (e) => {
-
-        const timeout = setTimeout(()=> {
-            this.setState(prev => ({
-                searchTerm: e.target.value,
-            }))}, 500)
-      //  console.log(this.state.searchTerm)
-      this.loadMore()
-        return () =>  clearTimeout(timeout)
+    handleSearchTerm = (query) => {
+        this.setState({
+            searchTerm: query,
+        });
+        this.loadMore(query);
+        return;
     }
 
     handleClick = async () => {
         await this.setState(prevState => ({
             page: prevState.page+1
-        }))
-        this.loadMore();
+        }));
+        this.loadMore(this.state.searchTerm,this.state.page);
     }
 
     componentDidMount = () => {
@@ -81,16 +77,19 @@ class App extends React.Component {
                 ?
                 <>
                 <HeroMain movie={this.state.results[0]} />
-                <SearchBar value={this.state.searchTerm} callback={this.handleSearchTerm} /> < TopMovies data = {
+                <SearchBar callback={this.handleSearchTerm} /> < TopMovies data = {
                     this.state.results
-                } /> < Button onClick = {
-                    this.handleClick
-                } >
+                } />
                 {
-                    this.state.loading ? <Spinner />: "Load More"
-                } < /Button> < / >: <><Preloader><Spinner color="#03CC90" /></Preloader> < />
-            } < / >
-        )
-    }
+                    this.state.page < this.state.total_pages && < Button onClick = {
+                        this.handleClick
+                    } >
+                    {
+                        this.state.loading ? <Spinner />: "Load More"
+                    } < /Button>
+                } < / >: <><Preloader><Spinner color="#03CC90" / > </Preloader> < />
+        } < / >
+    )
+}
 }
 export default App;
