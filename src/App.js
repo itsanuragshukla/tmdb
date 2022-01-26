@@ -62,7 +62,7 @@ class App extends React.Component {
         await this.setState(prevState => ({
             page: prevState.page+1
         }));
-        this.loadMore(this.state.searchTerm,this.state.page);
+        this.loadMore(this.state.searchTerm, this.state.page);
     }
 
     componentDidMount = () => {
@@ -87,7 +87,7 @@ class App extends React.Component {
                     {
                         this.state.loading ? <Spinner />: "Load More"
                     } < /Button>
-                } < / >: <><Preloader><Spinner color="#03CC90" / > </Preloader> < />
+                } < / >: <><Preloader><Spinner color="#00FFF5" / > </Preloader> < />
         } < / >
     )
 }

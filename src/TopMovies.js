@@ -26,9 +26,7 @@ class TopMovies extends React.Component {
 
             <MovieGrid>
            {this.props.data.map(movie =>
-                <MovieDiv onClick={()=>{
-                    alert(movie.adult)
-                }} key={movie.id+movie.vote_count}>
+                <MovieDiv key={movie.id+movie.vote_count}>
            <PosterImage imgUrl={IMAGE_BASE_URL+POSTER_SIZE+movie.poster_path}>
              <img src={IMAGE_BASE_URL+POSTER_SIZE+movie.poster_path} />
            </PosterImage>

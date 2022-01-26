@@ -5,7 +5,7 @@ const Wrapper = styled.div`
 min-height:50px;
 height:auto;
 width:100vw;
-background-color: #3F4354;
+background-color: #222831;
 `
 const Logo = styled.div`
 min-height:50px;
@@ -29,7 +29,7 @@ font-size:1.3rem;
 const Nav = () => {
     return (
         <Wrapper>
-    <Logo>Anurag Shukla</Logo>
+    <Logo>The Movie DataBase </Logo>
     </Wrapper>
     )
 }

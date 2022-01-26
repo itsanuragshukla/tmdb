@@ -14,8 +14,8 @@ const MovieDiv = styled.div`
 height:auto;
 max-width:90vw;
 min-width:230px;
-margin:30px;
-border-radius:20px;
+margin:15px;
+border-radius:15px;
 overflow:hidden;
 background:rgba(255,255,255,0.5);
 transition:0.3s;
@@ -35,13 +35,14 @@ width:200px;
 }
 :hover{
 transform:scale(1.1);
+filter:brightness(120%);
 }
 `;
 
 const PosterImage = styled.div`
 height:auto;
 width:100%;
-background:url(${props => props.imgUrl}) , green;
+background:url(${props => props.imgUrl}) , #222831;
 background-size:100% 100%;
 & > img {
 width:100%;
@@ -56,13 +57,20 @@ max-width:50%;
 min-height:50px;
 height:60px;
 border-radius:5px;
-background: #03CC90;
+background: #222831;
 font-size:1.2rem;
 display:flex;
 justify-content:center;
 align-items:center;
 margin:30px auto;
 color:  #3F4354;
+cursor:pointer;
+transition:0.3s;
+
+:hover{
+color:#00FFF5;
+}
+
 `;
 const HeroDiv = styled.div`
 height:auto;
@@ -70,7 +78,7 @@ width:100vw;
 display:flex;
 position:relative;
 overflow:hidden;
-background:linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6) ),url(${props => props.heroImgUrl}) , #03CC90;
+background:linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6) ),url(${props => props.heroImgUrl}) , #222831;
 background-size:100% 100%;
 
 & > img {
@@ -120,7 +128,7 @@ height:50px;
 width:50px;
 border-radius:50%;
 border:5px solid transparent;
-border-top:5px solid ${props => props.color || '#232734'};
+border-top:5px solid ${props => props.color || '#00FFF5'};
 margin:10px;
 animation:spin 0.5s linear infinite;
 @keyframes spin{

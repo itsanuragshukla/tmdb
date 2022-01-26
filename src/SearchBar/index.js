@@ -41,7 +41,7 @@ const SearchBar = (props) => {
                     <SearchIcon />
                 </Icon>
                 <Input>
-                    <input type="text" placeholder="Search Movie ..." name="searchTerm" value={state} onChange={event => setState(event.target.value)} />
+                    <input type="search" placeholder="Search Movie ..." name="searchTerm" value={state} onChange={event => setState(event.target.value)} />
                 </Input>
                 </Search>
                 </Wrapper>
