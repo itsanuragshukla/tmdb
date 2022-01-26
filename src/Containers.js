@@ -15,13 +15,23 @@ height:auto;
 max-width:90vw;
 min-width:230px;
 margin:15px;
+min-height:250px;
 border-radius:15px;
 overflow:hidden;
-background:rgba(255,255,255,0.5);
+background: linear-gradient(90deg, #222831 8%, #393E46 18%, #222831 33%);
+background-size:200% 100%;
+animation: 1.25s shine linear infinite;
 transition:0.3s;
 @media only screen and (max-width: 600px) {
 width:150px;
 }
+
+@keyframes shine {
+100% {
+background-position: -200% 0;
+}
+}
+
 @media only screen and (min-width: 600px) {
 width:180px;
 
@@ -42,7 +52,7 @@ filter:brightness(120%);
 const PosterImage = styled.div`
 height:auto;
 width:100%;
-background:url(${props => props.imgUrl}) , #222831;
+background:url(${props => props.imgUrl});
 background-size:100% 100%;
 & > img {
 width:100%;
@@ -78,7 +88,7 @@ width:100vw;
 display:flex;
 position:relative;
 overflow:hidden;
-background:linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6) ),url(${props => props.heroImgUrl}) , #222831;
+background:linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6) ),url(${props => props.heroImgUrl});
 background-size:100% 100%;
 
 & > img {
