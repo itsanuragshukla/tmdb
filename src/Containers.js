@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 
 const MovieGrid = styled.div`
@@ -154,7 +153,7 @@ transform:rotate(360deg);
 
 const Preloader = styled.div`
 width:100vw;
-height:calc(100vh - 60px);
+height:auto;
 background:inherit;
 display:flex;
 justify-content:center;

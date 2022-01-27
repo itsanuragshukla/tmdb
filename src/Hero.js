@@ -1,8 +1,7 @@
 import React from 'react'
 import {
     IMAGE_BASE_URL,
-    BACKDROP_SIZE,
-    POSTER_SIZE
+    BACKDROP_SIZE
 } from './config'
 
 import {
@@ -21,7 +20,7 @@ class HeroMain extends React.Component {
     render() {
         return (
             <HeroDiv heroImgUrl={IMAGE_BASE_URL+BACKDROP_SIZE+this.props.movie.backdrop_path}>
-                <img src={IMAGE_BASE_URL+BACKDROP_SIZE+this.props.movie.backdrop_path} />
+                <img src={IMAGE_BASE_URL+BACKDROP_SIZE+this.props.movie.backdrop_path} alt = "Movie backdrop_path"/>
                 <HeroInfo>
                     <h1> {this.props.movie.original_title}</h1>
                     <p>

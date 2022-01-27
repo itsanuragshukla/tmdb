@@ -1,27 +1,21 @@
-import React from 'react'
-import NavBar from './NavBar'
-import './App.css'
-import Defs from './API'
-import TopMovies from './TopMovies'
-import HeroMain from './Hero'
-import SearchBar from './SearchBar'
-
+import React from 'react';
+import NavBar from './NavBar';
+import './App.css';
+import Defs from './API';
+import TopMovies from './TopMovies';
+import HeroMain from './Hero';
+import SearchBar from './SearchBar';
 
 import {
     Button,
     Spinner,
     Preloader
-} from './Containers'
-import {
-    IMAGE_BASE_URL,
-    BACKDROP_SIZE,
-    POSTER_SIZE
-} from './config'
+} from './Containers';
 
 class App extends React.Component {
 
     constructor() {
-        super()
+        super();
         this.state = {
             page: 0,
             results: [],
@@ -29,15 +23,16 @@ class App extends React.Component {
             total_results: 0,
             loading: true,
             searchTerm: "",
-        }
-        this.loadMore = this.loadMore.bind(this)
-        this.handleClick = this.handleClick.bind(this)
-        this.handleSearchTerm = this.handleSearchTerm.bind(this)
+            firstLoad: true,
+        };
+        this.loadMore = this.loadMore.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+        this.handleSearchTerm = this.handleSearchTerm.bind(this);
     }
     loadMore = async (query = "", pageNum = 1) => {
-        this.setState(prev => ({
-            loading: !prev.loading && !prev.loading,
-        }))
+        this.setState({
+            loading: true
+        })
         const data = await Defs.fetchMovies(query, pageNum)
         this.setState(prev => ({
             ...data,
@@ -45,51 +40,55 @@ class App extends React.Component {
             prev.page > 1 ? [...prev.results, ...data.results]: [...data.results]
 
         }))
-        this.setState(prev => ({
-            loading: prev.loading && !prev.loading,
-        }))
-    };
+        this.setState({
+            loading: false,
+            firstLoad: false,
+        })
+    }
 
     handleSearchTerm = (query) => {
         this.setState({
             searchTerm: query,
-        });
+        })
         this.loadMore(query);
-        return;
+        return ;
     }
 
     handleClick = async () => {
         await this.setState(prevState => ({
-            page: prevState.page+1
-        }));
+            page: prevState.page+1,
+        }))
         this.loadMore(this.state.searchTerm, this.state.page);
     }
 
     componentDidMount = () => {
         this.handleClick();
-    }
+    };
 
     render() {
         return (<>
             <NavBar />
             {
-                this.state.results[0]
-                ?
-                <>
-                <HeroMain movie={this.state.results[0]} />
-                <SearchBar callback={this.handleSearchTerm} /> < TopMovies data = {
-                    this.state.results
-                } />
+                this.state.results[0] && !this.state.searchTerm && <HeroMain movie={this.state.results[0]} />
+            } < SearchBar callback = {
+                this.handleSearchTerm
+            }/>
+
+            {
+                this.state.results[0] ? <TopMovies data={this.state.results} />:
+                this.state.loading || this.state.firstLoad ? <Preloader><Spinner /></Preloader>: <h1>Not found</h1>
+
+            }
+
+            {
+                this.state.page < this.state.total_pages && < Button onClick = {
+                    this.handleClick
+                } >
                 {
-                    this.state.page < this.state.total_pages && < Button onClick = {
-                        this.handleClick
-                    } >
-                    {
-                        this.state.loading ? <Spinner />: "Load More"
-                    } < /Button>
-                } < / >: <><Preloader><Spinner color="#00FFF5" / > </Preloader> < />
-        } < / >
-    )
-}
+                    this.state.loading ? <Spinner />: "Load More"
+                } < /Button>
+            } < / >
+        )
+    }
 }
 export default App;

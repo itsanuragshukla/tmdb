@@ -18,8 +18,6 @@ const SearchBar = (props) => {
     const initial = useRef(true);
     const [state,
         setState] = useState("")
-    const [searchTerm,
-        setSearchTerm] = useState("");
 
     useEffect(()=> {
         if (initial.current) {
@@ -28,13 +26,11 @@ const SearchBar = (props) => {
         }
 
         const timer = setTimeout(()=> {
-            setSearchTerm(state);
             props.callback(state);
         }, 500);
         return () => clearTimeout(timer);
     },
-        [setSearchTerm,
-            state])
+        [state])
     return (<Wrapper>
                 <Search>
                 <Icon>
