@@ -82,17 +82,18 @@ color:#00FFF5;
 
 `;
 const HeroDiv = styled.div`
-height:auto;
-width:100vw;
+max-height:calc(100vh - 50px);
+max-width:100vw;
 display:flex;
 position:relative;
 overflow:hidden;
 background:linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6) ),url(${props => props.heroImgUrl});
-background-size:100% 100%;
+background-size:cover;
+
 
 & > img {
-width:100vw;
-height:auto;
+width:100%;
+height:100%;
 visibility:hidden;
 }
 &:hover :nth-child(2) {
@@ -108,6 +109,12 @@ background:rgba(255,255,255,0);
 backdrop-filter: blur(0px);
 transition:0.3s;
 overflow:hidden;
+
+@media only screen and (min-width:720px) {                                          max-width:80vw;                                                                
+}
+@media only screen and (min-width: 992px) {
+max-width:70vw;
+}
 
 & > h1 {
 width:90%;
