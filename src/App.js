@@ -40,30 +40,29 @@ class App extends React.Component {
         this.loadMore = this.loadMore.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleSearchTerm = this.handleSearchTerm.bind(this);
-        this.resetSearch = this.resetSearch.bind(this);
+        this.getOld = this.getOld.bind(this);
     }
     loadMore = async (query = "", pageNum = 1) => {
         this.setState({
             loading: true
         })
         const data = await Defs.fetchMovies(query, pageNum)
-        this.setState(prev => ({
+        await  this.setState(prev => ({
             ...data,
             results:
             prev.page > 1 ? [...prev.results, ...data.results]: [...data.results]
-
         }))
-        this.setState({
+        await this.setState({
             loading: false,
             firstLoad: false,
         })
+        sessionStorage.setItem('homeData', JSON.stringify(this.state))
     }
 
     handleSearchTerm = async (query) => {
         if (query.trim() === "" && query !== "") {
             return;
         }
-
         await this.setState({
             searchTerm: query.trim(),
         })
@@ -76,19 +75,23 @@ class App extends React.Component {
             page: prevState.page+1,
         }))
         this.loadMore(this.state.searchTerm, this.state.page);
+//        console.log("not get old home")
     }
-    resetSearch = async() => {
-      //  console.log("resetSearch")
+
+    getOld = async () => {
+    //    console.log("get old home")
+        const oldHomeData = JSON.parse(sessionStorage.getItem('homeData'));
+        await this.setState(oldHomeData)
         await this.setState({
-            searchTerm: "",
+            loading: false,
+            firstLoad: false,
         })
-
-        this.loadMore();
     }
 
-    componentDidMount = () => {
-        this.resetSearch();
-        this.handleClick();
+    componentDidMount = async () => {
+        const oldHome = await sessionStorage.getItem('homeData');
+        oldHome !== null
+        ? this.getOld(): this.handleClick()
     };
 
     render() {
@@ -96,30 +99,30 @@ class App extends React.Component {
             <NavBar />
             <Routes>
             <Route path="/" element={<> {
-            this.state.results[0] && !this.state.searchTerm && <HeroMain movie={this.state.results[0]} />
-        } < SearchBar callback = {
-            this.handleSearchTerm
-        }/>
+                this.state.results[0] && !this.state.searchTerm && <HeroMain movie={this.state.results[0]} />
+            } < SearchBar callback = {
+                this.handleSearchTerm
+            }/>
 
-            {
-                this.state.results[0] ? <TopMovies data={this.state.results} search={this.state.searchTerm} />:
-                this.state.loading || this.state.firstLoad ? <Preloader><Spinner /></Preloader>: <h1>Not found</h1>
-
-            }
-
-            {
-                this.state.page < this.state.total_pages && < Button onClick = {
-                    this.handleClick
-                } >
                 {
-                    this.state.loading ? <Spinner />: "Load More"
-                } < /Button>
-            } < />
-            } />
+                    this.state.results[0] ? <TopMovies data={this.state.results} search={this.state.searchTerm} />:
+                    this.state.loading || this.state.firstLoad ? <Preloader><Spinner /></Preloader>: <h1>Not found</h1>
+
+                }
+
+                {
+                    this.state.page < this.state.total_pages && < Button onClick = {
+                        this.handleClick
+                    } >
+                    {
+                        this.state.loading ? <Spinner />: "Load More"
+                    } < /Button>
+                } < />
+                } />
 
             <Route path="/:movieId" element={<GetMovieComponent />} />
 
-        </Routes></>
+        </Routes> < />
         )
     }
 }

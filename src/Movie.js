@@ -28,23 +28,42 @@ class Movie extends React.Component {
             loaded: false,
         }
         this.getMovie = this.getMovie.bind(this);
+        this.getOld = this.getOld.bind(this);
+
     }
 
     getMovie = async (id) => {
         const data = await Defs.fetchMovie(id);
         const credits = await Defs.fetchCredits(id);
-          console.log(data);
-        //  console.log(credits);
+        //console.log(data);
+        //console.log(credits);
+    //    console.log("fetching api")
         this.setState((prev) => ({
             movieData: data,
             credits: credits,
             loaded: true,
         }));
+        sessionStorage.setItem("data"+id, JSON.stringify(data));
+        sessionStorage.setItem("credit"+id, JSON.stringify(credits));
         return;
     }
 
+    getOld = (id) => {
+    //    console.log("not fetching api")
+        const oldData = JSON.parse(sessionStorage.getItem("data"+this.props.movieId));
+        const oldCredits = JSON.parse(sessionStorage.getItem("credit"+this.props.movieId));
+        this.setState((prev) => ({
+            movieData: oldData,
+            credits: oldCredits,
+            loaded: true,
+        }));
+
+    }
+
     componentDidMount() {
-        this.getMovie(this.props.movieId);
+        const oldData = sessionStorage.getItem("data"+this.props.movieId);
+       // console.log(oldData);
+        oldData != null ? this.getOld(this.props.movieId): this.getMovie(this.props.movieId);
     }
 
     render() {
@@ -63,7 +82,7 @@ class Movie extends React.Component {
             </p>
     */
                 }
-                <MovieInfoMain data={this.state.movieData}/>
+                <MovieInfoMain data={this.state.movieData} />
 		</MovieInfo>
 
 

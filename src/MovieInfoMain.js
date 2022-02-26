@@ -39,7 +39,7 @@ const MovieInfoMain = (props) => {
         })*/
 
         keys.map(key => {
-            return(<div>
+            return(<div key={key}>
                 <div>
                 {
                 key.replaceAll("_", " ")
