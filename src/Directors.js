@@ -1,7 +1,6 @@
 import React from 'react'
 import {
     IMAGE_BASE_URL,
-    BACKDROP_SIZE,
     POSTER_SIZE
 } from './config';
 import AnyGrid from './AnyGrid'
@@ -21,7 +20,7 @@ class Directors extends React.Component {
 
     componentDidMount() {
         const director = this.props.crew.filter(person => {
-            return person.job == 'Director'
+            return person.job === 'Director'
         }).filter(data => {
             return data.profile_path !== null;
         });

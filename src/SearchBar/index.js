@@ -30,7 +30,7 @@ const SearchBar = (props) => {
         }, 500);
         return () => clearTimeout(timer);
     },
-        [state])
+        [state,props])
     return (<Wrapper>
                 <Search>
                 <Icon>

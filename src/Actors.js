@@ -1,7 +1,6 @@
 import React from 'react'
 import {
     IMAGE_BASE_URL,
-    BACKDROP_SIZE,
     POSTER_SIZE
 } from './config';
 import AnyGrid from './AnyGrid'
@@ -11,8 +10,7 @@ import {
 } from './MovieContainer'
 import {
     Button,
-    Spinner,
-    Preloader
+    Spinner
 } from './Containers';
 class Actors extends React.Component {
     constructor(props) {

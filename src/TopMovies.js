@@ -25,7 +25,7 @@ class TopMovies extends React.Component {
 
         return (
             <>
-            <h1 className="gridHead">{this.props.search != "" ? "Search Results for: " : "Popular Movies"}{this.props.search}</h1>
+            <h1 className="gridHead">{this.props.search !== "" ? "Search Results for: " : "Popular Movies"}{this.props.search}</h1>
             <MovieGrid>
            {this.props.data.map(movie =>
                 movie.poster_path !== null &&

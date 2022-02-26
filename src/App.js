@@ -1,7 +1,4 @@
-import React, {
-    useEffect,
-    useState,
-} from 'react';
+import React from 'react';
 import NavBar from './NavBar';
 import './App.css';
 import Defs from './API';
@@ -64,7 +61,7 @@ class App extends React.Component {
     }
 
     handleSearchTerm = async (query) => {
-        if (query.trim() == "" && query != "") {
+        if (query.trim() === "" && query !== "") {
             return;
         }
 

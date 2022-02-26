@@ -1,9 +1,4 @@
 import React from 'react'
-import {
-    MovieInfo
-} from './MovieContainer'
-
-
 const keys = ["revenue",
     "budget",
     "homepage",

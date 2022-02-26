@@ -11,11 +11,9 @@ import {
     Poster,
     MovieInfo
 } from './MovieContainer';
-import Directors from './Directors';
 import Actors from './Actors';
 import Crew from './Crew';
 import {
-    Button,
     Spinner,
     Preloader
 } from './Containers';

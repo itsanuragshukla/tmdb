@@ -1,7 +1,6 @@
 import React from 'react'
 import {
     IMAGE_BASE_URL,
-    BACKDROP_SIZE,
     POSTER_SIZE
 } from './config';
 import AnyGrid from './AnyGrid'
@@ -12,7 +11,6 @@ import {
 import {
     Button,
     Spinner,
-    Preloader
 } from './Containers';
 class Crew extends React.Component {
     constructor(props) {
