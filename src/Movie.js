@@ -33,7 +33,7 @@ class Movie extends React.Component {
     getMovie = async (id) => {
         const data = await Defs.fetchMovie(id);
         const credits = await Defs.fetchCredits(id);
-        //  console.log(data);
+          console.log(data);
         //  console.log(credits);
         this.setState((prev) => ({
             movieData: data,
