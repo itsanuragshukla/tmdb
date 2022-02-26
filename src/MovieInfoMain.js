@@ -22,22 +22,21 @@ const keys = ["revenue",
     "vote_count"];
 const MovieInfoMain = (props) => {
     return (
-
         /*   Object.entries(props.data).map(([key, value])=> {
             if (key in keys) {
                 return (
                     <div>
                 <div>
                 {
-                        key
-                        }
-                    </div>
+                	key
+                }
+                </div>
                 <div>
                 {
                         value.toString()
-                        }
-                    </div>
-                    </div>
+                }
+                </div>
+                 </div>
                 );
             } else {
                 return;
@@ -53,8 +52,11 @@ const MovieInfoMain = (props) => {
             </div>
                 <div>
                 {
-                props.data[key]  ? (typeof props.data[key]) != 'object' ? props.data[key].toString():
-                "object": "not available"
+                props.data[key]  
+			? (typeof props.data[key]) != 'object' 
+			? props.data[key].toString()
+			: "object"
+			: "not available"
                 }
             </div>
             </div>
