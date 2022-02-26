@@ -1,5 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
+import {
+    Link
+} from 'react-router-dom'
 
 const Wrapper = styled.div`
 min-height:50px;
@@ -21,16 +24,21 @@ display:flex;
 justify-content:center;
 align-items:center;
 color:  #FFFFFF;
-
 @media only screen and (max-width: 600px) {
 font-size:1.3rem;
 }
 `
+const LinkStyle = {
+    textDecoration: "none",
+}
+
 const Nav = () => {
     return (
+        <Link style={LinkStyle} to="/">
         <Wrapper>
     <Logo>The Movie DataBase </Logo>
     </Wrapper>
+    </Link>
     )
 }
 

@@ -5,22 +5,22 @@ height:auto;
 width:100vw;
 display:flex;
 align-items:center;
-justify-content:space-around;
+justify-content:center;
 flex-wrap:wrap;
 `;
 
 const MovieDiv = styled.div`
 height:auto;
 max-width:90vw;
-min-width:230px;
-margin:15px;
-min-height:250px;
+min-width:250px;
+margin:20px 20px;
+min-height:270px;
 border-radius:15px;
 overflow:hidden;
 background: linear-gradient(90deg, #222831 8%, #393E46 18%, #222831 33%);
 background-size:200% 100%;
 animation: 1.25s shine linear infinite;
-transition:0.3s;
+transition:0.2s;
 @media only screen and (max-width: 600px) {
 width:150px;
 }
@@ -30,7 +30,10 @@ width:150px;
 background-position: -200% 0;
 }
 }
-
+@media only screen and (max-width:300px) {
+min-width:150px;
+min-height:200px;
+}
 @media only screen and (min-width: 600px) {
 width:180px;
 
@@ -43,7 +46,6 @@ width:190px;
 width:200px;
 }
 :hover{
-transform:scale(1.1);
 filter:brightness(120%);
 }
 `;
@@ -53,17 +55,20 @@ height:auto;
 width:100%;
 background:url(${props => props.imgUrl});
 background-size:100% 100%;
+transition:0.2s;
 & > img {
 width:100%;
 height:auto;
 visibility:hidden;
 }
+:hover{
+transform:scale(1.05);
+}
 `;
 const Button = styled.div`
 min-width:100px;
 width:auto;
-max-width:50%;
-min-height:50px;
+max-width:200px;
 height:60px;
 border-radius:5px;
 background: #222831;
@@ -86,7 +91,7 @@ max-height:calc(100vh - 50px);
 max-width:100vw;
 display:flex;
 position:relative;
-overflow:hidden;
+overflow:hidden;;
 background:linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6) ),url(${props => props.heroImgUrl});
 background-size:cover;
 
@@ -110,7 +115,7 @@ backdrop-filter: blur(0px);
 transition:0.3s;
 overflow:hidden;
 
-@media only screen and (min-width:720px) {                                          max-width:80vw;                                                                
+@media only screen and (min-width:720px) {                                          max-width:80vw;
 }
 @media only screen and (min-width: 992px) {
 max-width:70vw;

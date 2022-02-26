@@ -6,6 +6,10 @@ import {
 } from './Containers'
 
 import {
+    Link
+} from 'react-router-dom'
+
+import {
     IMAGE_BASE_URL,
     POSTER_SIZE
 } from './config'
@@ -20,15 +24,19 @@ class TopMovies extends React.Component {
     render() {
 
         return (
-
+            <>
+            <h1 className="gridHead">{this.props.search != "" ? "Search Results for: " : "Popular Movies"}{this.props.search}</h1>
             <MovieGrid>
            {this.props.data.map(movie =>
-                <MovieDiv key={movie.id+movie.vote_count}>
-           <PosterImage imgUrl={IMAGE_BASE_URL+POSTER_SIZE+movie.poster_path}>
-             <img src={IMAGE_BASE_URL+POSTER_SIZE+movie.poster_path} alt = "movie poster"/>
-           </PosterImage>
-           </MovieDiv>)}
-            </MovieGrid>
+                movie.poster_path !== null &&
+                <Link key={movie.id+movie.vote_count} to={`/${movie.id}`}>
+                    <MovieDiv>
+                    <PosterImage imgUrl={IMAGE_BASE_URL+POSTER_SIZE+movie.poster_path}>
+                    <img src={IMAGE_BASE_URL+POSTER_SIZE+movie.poster_path} alt="movie poster" />
+                    </PosterImage>
+                    </MovieDiv>
+                    </Link>)}
+                    </MovieGrid> < />
 
         )
     }}
