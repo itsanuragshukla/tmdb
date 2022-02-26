@@ -7,7 +7,6 @@ import HeroMain from './Hero';
 import SearchBar from './SearchBar';
 import Movie from './Movie'
 import {
-    BrowserRouter as Router,
     Routes,
     Route,
     useParams
@@ -93,7 +92,7 @@ class App extends React.Component {
     };
 
     render() {
-        return (<Router>
+        return (<>
             <NavBar />
             <Routes>
             <Route path="/" element={<> {
@@ -120,8 +119,7 @@ class App extends React.Component {
 
             <Route path="/:movieId" element={<GetMovieComponent />} />
 
-        </Routes>
-        </Router>
+        </Routes></>
         )
     }
 }
