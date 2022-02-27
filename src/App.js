@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {
+    useEffect
+} from 'react';
 import NavBar from './NavBar';
 import './App.css';
 import Defs from './API';
@@ -21,6 +23,9 @@ const GetMovieComponent = (props)=> {
     const {
         movieId
     } = useParams();
+    useEffect(()=> {
+        props.reset()
+    }, [])
     return (<Movie movieId={movieId} />)
 }
 
@@ -41,6 +46,7 @@ class App extends React.Component {
         this.handleClick = this.handleClick.bind(this);
         this.handleSearchTerm = this.handleSearchTerm.bind(this);
         this.getOld = this.getOld.bind(this);
+        this.resetSearch = this.resetSearch.bind(this);
     }
     loadMore = async (query = "", pageNum = 1) => {
         this.setState({
@@ -56,7 +62,7 @@ class App extends React.Component {
             loading: false,
             firstLoad: false,
         })
-        sessionStorage.setItem('homeData', JSON.stringify(this.state))
+        query === "" && sessionStorage.setItem('homeData', JSON.stringify(this.state))
     }
 
     handleSearchTerm = async (query) => {
@@ -69,17 +75,22 @@ class App extends React.Component {
         await this.loadMore(this.state.searchTerm);
         return;
     }
-
+    resetSearch = () => {
+        this.setState({
+            searchTerm: "",
+        })
+        this.getOld()
+    }
     handleClick = async () => {
         await this.setState(prevState => ({
             page: prevState.page+1,
         }))
         this.loadMore(this.state.searchTerm, this.state.page);
-//        console.log("not get old home")
+        //        console.log("not get old home")
     }
 
     getOld = async () => {
-    //    console.log("get old home")
+        //    console.log("get old home")
         const oldHomeData = JSON.parse(sessionStorage.getItem('homeData'));
         await this.setState(oldHomeData)
         await this.setState({
@@ -120,7 +131,7 @@ class App extends React.Component {
                 } < />
                 } />
 
-            <Route path="/:movieId" element={<GetMovieComponent />} />
+            <Route path="/:movieId" element={<GetMovieComponent reset={this.resetSearch} />} />
 
         </Routes> < />
         )
