@@ -81,6 +81,7 @@ justify-content:space-around;
 flex-wrap:wrap;
 @media only screen and (min-width: 600px) {
 justify-content:;
+margin-bottom:50px;
 }
 `;
 
@@ -117,6 +118,7 @@ background:linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6) ),url
 background-size:100% 100%;
 transition:0.2s;
 position:relative;
+overflow:hidden;
 &>span{
 position:absolute;
 width:100%;

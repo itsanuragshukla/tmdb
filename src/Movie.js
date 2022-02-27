@@ -36,7 +36,7 @@ class Movie extends React.Component {
         const data = await Defs.fetchMovie(id);
         const credits = await Defs.fetchCredits(id);
         //console.log(data);
-        //console.log(credits);
+        // console.log(credits);
         //    console.log("fetching api")
         this.setState((prev) => ({
             movieData: data,
@@ -62,7 +62,6 @@ class Movie extends React.Component {
 
     componentDidMount() {
         const oldData = sessionStorage.getItem("data"+this.props.movieId);
-        // console.log(oldData);
         oldData != null ? this.getOld(this.props.movieId): this.getMovie(this.props.movieId);
     }
 
@@ -76,25 +75,21 @@ class Movie extends React.Component {
 		</Poster>
         </Wrapper>
             <MovieInfo>
-	{/*	<h1>{this.state.movieData.title}</h1>
-		<p>
-                {this.state.movieData.overview}
-            </p>
-    */
-                }
                 <MovieInfoMain data={this.state.movieData} />
 		</MovieInfo>
 
 
-            <Actors cast={this.state.credits.cast} />
-            {
-                //    <Directors crew={this.state.credits.crew} />
-            } < Crew crew = {
-                this.state.credits.crew
-            } /> < />: !this.state.loaded ? <Preloader><Spinner / > </Preloader>: <h1>Not found</h1>
+            <Actors cast={this.state.credits.cast.filter(data => {
+            return data.profile_path !== null;
+        })} /> < Crew crew = {
+                this.state.credits.crew.filter(data => {
+            return data.profile_path !== null;
+        })
+            } /> < />: !this.state.loaded
+            ? <Preloader><Spinner /> </Preloader>: <h1>Not found</h1>
 
-    );
-}
+        );
+    }
 }
 
 export default Movie;

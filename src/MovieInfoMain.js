@@ -25,10 +25,8 @@ const openObj = (obj) => {
                 {
                 value
                 ? (typeof value) === 'object'
-                ? openObj(value): value && key == "name" 
-                ? value.toString()
-                : null
-                : "not available"
+                ? openObj(value): value && key == "name"
+                ? value.toString(): null: "not available"
                 }
             </div>
             </div>
@@ -50,7 +48,7 @@ const MovieInfoMain = (props) => {
                 props.data[key] !== null
                 ? (typeof props.data[key]) !== 'object'
                 ? key !== "homepage"
-                ? props.data[key].toString(): <a style={ { "text-transform": "lowercase" }} href={props.data[key]}>{props.data[key]}</a>: openObj(props.data[key]): "not available"
+                ? props.data[key].toString(): <a style={ { "textTransform": "lowercase" }} href={props.data[key]}>{props.data[key]}</a>: openObj(props.data[key]): "not available"
                 }
             </div>
             </div>

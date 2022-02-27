@@ -27,38 +27,26 @@ class Actors extends React.Component {
     }
     handleClick = async () => {
         await this.setState(prevState => ({
-            casts: prevState.casts+5,
+            casts: prevState.casts+10,
+            loading: !prevState.loading,
         }))
-        this.loadMore(this.state.casts);
+        setTimeout(()=> {
+            this.loadMore(this.state.casts)}, 10);
     }
-
     loadMore = async (limit = 10) => {
-        this.setState({
-            loading: true
-        })
-        const actor = await this.props.cast.slice(limit-5, limit).filter(data => {
-            return data.profile_path !== null;
-        });
+        const actor = await this.props.cast.slice(limit-10, limit)
         await this.setState(prev => ({
-            actors: [...prev.actors, ...actor]
+            actors: [...prev.actors, ...actor],
+            loading: !prev.loading
         }))
-        this.setState({
-            loading: false
-        })
     }
-
-
     componentDidMount() {
-        const actor = this.props.cast.slice(0, 10).filter(data => {
-            return data.profile_path !== null;
-        });
+        const actor = this.props.cast.slice(0, 10)
         const ttl = this.props.cast.length;
-      //  console.log(ttl)
         this.setState({
             total_casts: ttl,
             actors: actor
         })}
-
     render() {
 
         return <><AnyGrid heading="Starring">
@@ -77,7 +65,6 @@ class Actors extends React.Component {
                 </Person>
             )
             }
-
 			</AnyGrid>
         {
             this.state.casts < this.state.total_casts && < Button onClick = {
