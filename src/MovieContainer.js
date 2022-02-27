@@ -34,18 +34,22 @@ line-height:130%;
 }
 
 &>div{
-width:100vw;
+width:100%;
 display:flex;
 min-height:50px;
 align-items:center;
 border-bottom:1px solid #999;
 font-size:1rem;
-
+padding-right:5px;
 &>div{
-width:50%;
+width:50vw;
 overflow:hidden;
-text-overflow:ellipsis;
+word-wrap:break-word;
+font-weight:350;
 text-transform:capitalize;
+&>div{
+margin:5px 0 0 0 ;
+}
 }
 
 }
@@ -109,7 +113,7 @@ width:200px;
 const PersonImg = styled.div`
 height:auto;
 width:100%;
-background:linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6) ),url(${props => props.imgUrl}),green;
+background:linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6) ),url(${props => props.imgUrl});
 background-size:100% 100%;
 transition:0.2s;
 position:relative;

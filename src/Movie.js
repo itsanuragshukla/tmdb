@@ -37,7 +37,7 @@ class Movie extends React.Component {
         const credits = await Defs.fetchCredits(id);
         //console.log(data);
         //console.log(credits);
-    //    console.log("fetching api")
+        //    console.log("fetching api")
         this.setState((prev) => ({
             movieData: data,
             credits: credits,
@@ -49,7 +49,7 @@ class Movie extends React.Component {
     }
 
     getOld = (id) => {
-    //    console.log("not fetching api")
+        //    console.log("not fetching api")
         const oldData = JSON.parse(sessionStorage.getItem("data"+this.props.movieId));
         const oldCredits = JSON.parse(sessionStorage.getItem("credit"+this.props.movieId));
         this.setState((prev) => ({
@@ -62,7 +62,7 @@ class Movie extends React.Component {
 
     componentDidMount() {
         const oldData = sessionStorage.getItem("data"+this.props.movieId);
-       // console.log(oldData);
+        // console.log(oldData);
         oldData != null ? this.getOld(this.props.movieId): this.getMovie(this.props.movieId);
     }
 
