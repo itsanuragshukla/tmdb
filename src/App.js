@@ -86,11 +86,9 @@ class App extends React.Component {
             page: prevState.page+1,
         }))
         this.loadMore(this.state.searchTerm, this.state.page);
-        //        console.log("not get old home")
     }
 
     getOld = async () => {
-        //    console.log("get old home")
         const oldHomeData = JSON.parse(sessionStorage.getItem('homeData'));
         await this.setState(oldHomeData)
         await this.setState({

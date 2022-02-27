@@ -15,12 +15,13 @@ max-width:90vw;
 min-width:250px;
 margin:20px 20px;
 min-height:270px;
-border-radius:15px;
+border-radius:2px;
 overflow:hidden;
 background: linear-gradient(90deg, #222831 8%, #393E46 18%, #222831 33%);
 background-size:200% 100%;
 animation: 1.25s shine linear infinite;
 transition:0.2s;
+box-shadow: 1px 2px 3px 4px rgba(34, 40, 49,0.5),-1px -2px 3px 4px rgba(34, 40, 49,0.3);
 @media only screen and (max-width: 600px) {
 width:150px;
 }

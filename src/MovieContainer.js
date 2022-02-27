@@ -62,9 +62,11 @@ height:auto;
 background:url(${props => props.imgUrl});
 background-position:center:;
 background-size:cover;
-border:1px solid;
-border-radius:6px;
+border:1px solid #eee;
+border-radius:2px;
 margin:auto;
+box-shadow: 1px 2px 3px 4px rgba(150, 150, 150,0.2),-1px -2px 3px 4px rgba(150,150,150,0.1);
+
 & > img {
 width:100%;
 height:auto;
