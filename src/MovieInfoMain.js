@@ -48,7 +48,10 @@ const MovieInfoMain = (props) => {
                 props.data[key] !== null
                 ? (typeof props.data[key]) !== 'object'
                 ? key !== "homepage"
-                ? props.data[key].toString(): <a style={ { "textTransform": "lowercase" }} href={props.data[key]}>{props.data[key]}</a>: openObj(props.data[key]): "not available"
+                ? props.data[key].toString()
+		: <a style={{ "textTransform": "lowercase" }}href={props.data[key]}>{props.data[key]}</a>
+		: openObj(props.data[key])
+		: "not available"
                 }
             </div>
             </div>
